@@ -5,10 +5,9 @@ from requests import Request
 
 
 class FtxAuth:
-    def __init__(self, api_key: str, secret_key: str, subaccount_name: str = None):
+    def __init__(self, api_key: str, secret_key: str):
         self.api_key = api_key
         self.secret_key = secret_key
-        self.subaccount_name = subaccount_name
 
     def generate_auth_dict(
         self,
@@ -38,10 +37,6 @@ class FtxAuth:
             "FTX-SIGN": signature,
             "FTX-TS": str(ts)
         }
-    # Commented out subaccount logic below . It might still take the input from the user but it shouldn't be used anywhere
-    # if self.subaccount_name is not None and self.subaccount_name != "":
-    #   headers["FTX-SUBACCOUNT"] = self.subaccount_name
-    # This should give it nothing
         headers["FTX-SUBACCOUNT"] = ""
 
         return headers
@@ -58,10 +53,4 @@ class FtxAuth:
             },
             "op": "login"
         }
-        # Commented out subaccount logic below . It might still take the input from the user but it shouldn't be used anywhere
-        # if self.subaccount_name is not None and self.subaccount_name != "":
-        #    subscribe["args"]["subaccount"] = self.subaccount_name
-        # This should give it nothing...
-        subscribe["args"]["subaccount"] = ""
-
         return subscribe

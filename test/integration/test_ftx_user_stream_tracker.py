@@ -22,7 +22,7 @@ class FtxUserStreamTrackerUnitTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.ev_loop: asyncio.BaseEventLoop = asyncio.get_event_loop()
-        cls.ftx_auth = FtxAuth(conf.ftx_api_key, conf.ftx_secret_key, conf.ftx_subaccount_name)
+        cls.ftx_auth = FtxAuth(conf.ftx_api_key, conf.ftx_secret_key)
         cls.ftx_orderbook_data_source = FtxAPIOrderBookDataSource(trading_pairs=trading_pairs)
         cls.user_stream_tracker: FtxUserStreamTracker = FtxUserStreamTracker(cls.ftx_auth, trading_pairs)
 
