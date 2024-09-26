@@ -93,7 +93,6 @@ cdef class FtxExchange(ExchangeBase):
     def __init__(self,
                  ftx_secret_key: str,
                  ftx_api_key: str,
-                 ftx_subaccount_name: str = None,
                  poll_interval: float = 5.0,
                  trading_pairs: Optional[List[str]] = None,
                  trading_required: bool = True):
@@ -102,7 +101,7 @@ cdef class FtxExchange(ExchangeBase):
         self._account_available_balances = {}
         self._account_balances = {}
         self._account_id = ""
-        self._ftx_auth = FtxAuth(ftx_api_key, ftx_secret_key, ftx_subaccount_name)
+        self._ftx_auth = FtxAuth(ftx_api_key, ftx_secret_key)
         self._ev_loop = asyncio.get_event_loop()
         self._in_flight_orders = {}
         self._last_poll_timestamp = 0
